@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                String             @id @default(uuid())
+  email             String             @unique
+  name              String
+  passwordHash      String
+  role              Role               @default(USER)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  subscription      SubscriptionStatus @default(FREE)
+  savedCalculations SavedCalculation[]
+  articles          Article[]
+}
+
+enum Role {
+  USER
+  ADMIN
+  EXPERT
+}
+
+enum SubscriptionStatus {
+  FREE
+  PREMIUM
+  ENTERPRISE
+}
+
+model NewsletterLead {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  source    String   // URL representing the calculator or page they signed up from
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model SavedCalculation {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // E.g., "FRETE_KM", "CUBAGEM"
+  title     String?  // Custom title specified by user
+  inputs    Json     // Inputs parameters
+  outputs   Json     // Calculation outputs
+  createdAt DateTime @default(now())
+}
+
+model CalculationLog {
+  id        String   @id @default(uuid())
+  type      String   // E.g., "CUBAGEM", "DIESEL"
+  inputs    Json
+  outputs   Json
+  ipHash    String?
+  createdAt DateTime @default(now())
+}
+
+model Article {
+  id            String    @id @default(uuid())
+  slug          String    @unique
+  title         String
+  content       String    @db.Text
+  summary       String    @db.VarChar(255)
+  coverImageUrl String?
+  published     Boolean   @default(false)
+  authorId      String
+  author        User      @relation(fields: [authorId], references: [id])
+  category      Category  @relation(fields: [categoryId], references: [id])
+  categoryId    String
+  seoTitle      String?
+  seoDesc       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  publishedAt   DateTime?
+}
+
+model Category {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  slug     String    @unique
+  articles Article[]
+}

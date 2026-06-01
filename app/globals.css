@@ -1,26 +1,267 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc; /* Slate 50 */
+  --foreground: #0f172a; /* Slate 900 */
+  
+  --primary: #1e3a8a; /* Indigo/Blue 900 */
+  --primary-hover: #172554;
+  --primary-foreground: #ffffff;
+  
+  --secondary: #ea580c; /* Orange 600 */
+  --secondary-hover: #c2410c;
+  --secondary-foreground: #ffffff;
+  
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  
+  --border: #e2e8f0; /* Slate 200 */
+  --input: #f8fafc; /* Slate 50 */
+  --ring: #2563eb; /* Blue 600 */
+  
+  --muted: #64748b; /* Slate 500 */
+  --muted-foreground: #94a3b8; /* Slate 400 */
+  
+  --success: #10b981; /* Emerald 500 */
+  --danger: #ef4444; /* Red 500 */
+  --warning: #f59e0b; /* Amber 500 */
+  --info: #06b6d4; /* Cyan 500 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-card-bg: var(--card);
+  --color-card-text: var(--card-foreground);
+  
+  --color-border-custom: var(--border);
+  --color-input-custom: var(--input);
+  --color-ring-custom: var(--ring);
+  
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Micro-animations and Utilities */
+.transition-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+}
+
+.print-only {
+  display: none !important;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print, header, footer, nav, aside, button, input, select, textarea, [type="range"] {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* ─── TipTap / ProseMirror Editor Styles ─────────────────────────────────── */
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #475569;
+  pointer-events: none;
+  height: 0;
+}
+
+.rich-editor-content {
+  min-height: 350px;
+  padding: 1.25rem 1rem;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.rich-editor-content h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.4rem;
+}
+.rich-editor-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+.rich-editor-content h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.rich-editor-content p { margin-bottom: 0.85rem; color: #cbd5e1; }
+.rich-editor-content strong { color: #f8fafc; }
+.rich-editor-content em { color: #cbd5e1; }
+.rich-editor-content a { color: #f97316; text-decoration: underline; text-underline-offset: 3px; }
+
+.rich-editor-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 0.85rem;
+  color: #cbd5e1;
+}
+.rich-editor-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 0.85rem;
+  color: #cbd5e1;
+}
+.rich-editor-content li { margin-bottom: 0.3rem; }
+.rich-editor-content li p { margin-bottom: 0; }
+
+.rich-editor-content blockquote {
+  border-left: 3px solid #f97316;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: rgba(249, 115, 22, 0.07);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.rich-editor-content code {
+  background: #1e293b;
+  color: #fb923c;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.3rem;
+  font-size: 0.82em;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+
+.rich-editor-content pre {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+.rich-editor-content pre code {
+  background: none;
+  color: #94a3b8;
+  padding: 0;
+  font-size: 0.82rem;
+}
+
+.rich-editor-content hr { border: none; border-top: 1px solid #334155; margin: 1.5rem 0; }
+
+.rich-editor-content img {
+  border-radius: 0.75rem;
+  max-width: 100%;
+  border: 1px solid #334155;
+  margin: 1rem 0;
+}
+
+.rich-editor-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.rich-editor-content th {
+  background: #1e293b;
+  color: #f1f5f9;
+  font-weight: 700;
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  border: 1px solid #334155;
+}
+.rich-editor-content td {
+  padding: 0.55rem 0.85rem;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  vertical-align: top;
+}
+.rich-editor-content tr:nth-child(even) td { background: rgba(30, 41, 59, 0.4); }
+.rich-editor-content .selectedCell { background: rgba(249, 115, 22, 0.12) !important; }
+
+/* ─── Public Blog Article Styles ─────────────────────────────────────────── */
+.article-body h2 {
+  font-size: 1.4rem; font-weight: 800; color: #0f172a;
+  margin-top: 2rem; margin-bottom: 0.6rem;
+  border-bottom: 1px solid #e2e8f0; padding-bottom: 0.4rem;
+}
+.article-body h3 { font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-top: 1.5rem; margin-bottom: 0.4rem; }
+.article-body h4 { font-size: 1rem; font-weight: 700; color: #334155; margin-top: 1.2rem; margin-bottom: 0.3rem; }
+.article-body p { color: #475569; margin-bottom: 1rem; line-height: 1.8; }
+.article-body strong { color: #1e293b; }
+.article-body a { color: #ea580c; text-decoration: underline; text-underline-offset: 3px; }
+.article-body ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #475569; }
+.article-body ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; color: #475569; }
+.article-body li { margin-bottom: 0.4rem; }
+.article-body blockquote {
+  border-left: 4px solid #ea580c;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background: #fff7ed;
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: #92400e;
+  font-style: italic;
+}
+.article-body code {
+  background: #f1f5f9; color: #ea580c;
+  padding: 0.15rem 0.4rem; border-radius: 0.3rem;
+  font-size: 0.85em; font-family: ui-monospace, SFMono-Regular, monospace;
+}
+.article-body pre { background: #0f172a; border-radius: 0.75rem; padding: 1.25rem; margin: 1.5rem 0; overflow-x: auto; }
+.article-body pre code { background: none; color: #94a3b8; padding: 0; }
+.article-body hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
+.article-body img {
+  border-radius: 0.75rem; max-width: 100%;
+  border: 1px solid #e2e8f0; margin: 1.5rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; margin: 1.5rem 0;
+  font-size: 0.9rem; border: 1px solid #e2e8f0; border-radius: 0.5rem; overflow: hidden;
+}
+.article-body th {
+  background: #f8fafc; color: #0f172a; font-weight: 700;
+  padding: 0.7rem 1rem; text-align: left; border: 1px solid #e2e8f0;
+}
+.article-body td { padding: 0.65rem 1rem; border: 1px solid #e2e8f0; color: #475569; vertical-align: top; }
+.article-body tr:nth-child(even) td { background: #f8fafc; }
+
+
