@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Page() {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ export default function Page() {
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    if (!password) return;
+    if (!email || !password) return;
 
     setError(null);
     setLoading(true);
@@ -21,7 +22,7 @@ export default function Page() {
       const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -29,7 +30,7 @@ export default function Page() {
       if (res.ok) {
         router.push("/admin/blog");
       } else {
-        setError(data.error || "Senha inválida.");
+        setError(data.error || "Credenciais inválidas.");
       }
     } catch (err) {
       setError("Erro de rede. Verifique sua conexão.");
@@ -60,6 +61,21 @@ export default function Page() {
         )}
 
         <form onSubmit={handleLogin} className="space-y-4">
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-slate-300 block">
+              E-mail
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin@fretelab.com.br"
+              className="w-full bg-slate-950 text-white border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-secondary transition-colors"
+              disabled={loading}
+              required
+            />
+          </div>
+
           <div className="space-y-1">
             <label className="text-xs font-semibold text-slate-300 block">
               Senha de Acesso

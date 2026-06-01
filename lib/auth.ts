@@ -4,9 +4,30 @@ import crypto from "crypto";
 const JWT_SECRET = process.env.JWT_SECRET || process.env.ADMIN_PASSWORD || "fretelab-secret-key-12345";
 export const COOKIE_NAME = "fretelab_admin_session";
 
-interface SessionPayload {
+export interface SessionPayload {
+  userId: string;
+  email: string;
+  name: string;
   role: string;
   expires: number;
+}
+
+// Password hashing helper using standard Node pbkdf2
+export function hashPassword(password: string): string {
+  const salt = crypto.randomBytes(16).toString("hex");
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
+  return `${salt}:${hash}`;
+}
+
+export function verifyPassword(password: string, storedHash: string): boolean {
+  try {
+    const [salt, hash] = storedHash.split(":");
+    if (!salt || !hash) return false;
+    const verifyHash = crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
+    return hash === verifyHash;
+  } catch (error) {
+    return false;
+  }
 }
 
 // Simple signed session implementation (dependency-free token)
@@ -52,7 +73,7 @@ export async function getAdminSession(): Promise<SessionPayload | null> {
     if (!token) return null;
     
     const session = verifySession(token);
-    if (session && session.role === "admin") {
+    if (session && (session.role === "ADMIN" || session.role === "admin")) {
       return session;
     }
     return null;
@@ -61,9 +82,15 @@ export async function getAdminSession(): Promise<SessionPayload | null> {
   }
 }
 
-export async function setAdminSession() {
+export async function setAdminSession(user: { id: string; email: string; name: string; role: string }) {
   const expires = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
-  const token = signSession({ role: "admin", expires });
+  const token = signSession({
+    userId: user.id,
+    email: user.email,
+    name: user.name,
+    role: user.role,
+    expires,
+  });
   
   const cookieStore = await cookies();
   cookieStore.set(COOKIE_NAME, token, {

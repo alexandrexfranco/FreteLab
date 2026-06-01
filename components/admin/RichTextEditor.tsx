@@ -110,7 +110,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
     const current = editor.getHTML();
     if (value !== current) {
       isExternalUpdate.current = true;
-      editor.commands.setContent(value || "", false);
+      editor.commands.setContent(value || "", false as any);
       isExternalUpdate.current = false;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

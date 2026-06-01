@@ -56,9 +56,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Find the admin author
+    // Find the author using the session user id if available, or fallback to any ADMIN
     const author = await prisma.user.findFirst({
-      where: { role: "ADMIN" },
+      where: session.userId ? { id: session.userId } : { role: "ADMIN" },
     });
 
     if (!author) {
