@@ -28,13 +28,21 @@ export default function Footer() {
           <p className="text-xs text-slate-500 leading-normal">
             A maior plataforma brasileira de calculadoras e simuladores logísticos 100% gratuitos para transportadores.
           </p>
-          <div className="text-xs text-slate-500">
-            © {new Date().getFullYear()} FreteLab. Todos os direitos reservados.
-            <span className="block mt-2">
+          <div className="text-xs text-slate-500 space-y-2">
+            <div>
+              © {new Date().getFullYear()} FreteLab. Todos os direitos reservados.
+            </div>
+            <div>
+              Contato:{" "}
+              <a href="mailto:contato@fretelab.com.br" className="text-slate-400 hover:text-white transition-colors">
+                contato@fretelab.com.br
+              </a>
+            </div>
+            <div className="block pt-1">
               <Link href="/admin/login" className="hover:text-slate-400 transition-colors">
                 Painel Administrativo
               </Link>
-            </span>
+            </div>
           </div>
         </div>
 

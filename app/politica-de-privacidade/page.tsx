@@ -50,6 +50,12 @@ export default function Page() {
             Reservamo-nos o direito de atualizar este documento periodicamente. Recomendamos a consulta frequente desta página
             para acompanhar eventuais alterações.
           </p>
+
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-4">5. Contato</h2>
+          <p>
+            Caso tenha qualquer dúvida sobre esta Política de Privacidade ou sobre o tratamento de seus dados, entre em contato
+            pelo e-mail: <a href="mailto:contato@fretelab.com.br" className="text-primary hover:underline">contato@fretelab.com.br</a>.
+          </p>
         </div>
       </article>
     </>

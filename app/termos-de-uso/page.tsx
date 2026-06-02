@@ -44,6 +44,12 @@ export default function Page() {
             Reservamo-nos o direito de restringir acessos de endereços IP que apresentem comportamentos suspeitos, ataques de negação
             de serviço (DDoS) ou tentativas de engenharia reversa de nossas APIs.
           </p>
+
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-4">4. Dúvidas e Contato</h2>
+          <p>
+            Para esclarecer dúvidas sobre estes Termos de Uso ou enviar feedbacks, por favor, envie um e-mail para:{" "}
+            <a href="mailto:contato@fretelab.com.br" className="text-primary hover:underline">contato@fretelab.com.br</a>.
+          </p>
         </div>
       </article>
     </>

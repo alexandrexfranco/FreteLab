@@ -51,6 +51,14 @@ export default function Page() {
             Não somos uma empresa de agenciamento de cargas nem vendemos seguros. Nossa isenção garante que as simulações e
             resultados mostrados aqui sejam imparciais, focando exclusivamente na sustentabilidade financeira do transportador.
           </p>
+
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-4">Fale Conosco</h2>
+          <p className="text-slate-600 leading-relaxed">
+            Dúvidas, sugestões de melhoria ou parcerias? Entre em contato diretamente com a nossa equipe pelo e-mail:{" "}
+            <a href="mailto:contato@fretelab.com.br" className="text-primary hover:underline font-semibold">
+              contato@fretelab.com.br
+            </a>.
+          </p>
         </div>
       </article>
     </>
