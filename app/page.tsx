@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import AdSenseBanner from "@/components/ads/AdSenseBanner";
+import NewsletterForm from "@/components/shared/NewsletterForm";
 
 const POPULAR_TOOLS = [
   {
@@ -322,23 +323,7 @@ export default function Home() {
             </p>
           </div>
           <div className="md:col-span-5">
-            <form className="flex flex-col sm:flex-row gap-3 w-full">
-              <input
-                type="email"
-                placeholder="Seu melhor e-mail"
-                required
-                className="flex-grow px-4 py-3 bg-white text-slate-900 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-sm"
-              />
-              <button
-                type="submit"
-                className="bg-secondary hover:bg-secondary-hover text-white font-bold py-3 px-6 rounded-lg transition-colors cursor-pointer text-sm"
-              >
-                Cadastrar
-              </button>
-            </form>
-            <span className="text-[10px] text-blue-200 mt-2 block">
-              Respeitamos sua privacidade. Cancele sua inscrição quando desejar.
-            </span>
+            <NewsletterForm source="pagina-inicial" />
           </div>
         </div>
       </section>
