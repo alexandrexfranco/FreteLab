@@ -1,7 +1,6 @@
 import Link from "next/link";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import AdSenseBanner from "@/components/ads/AdSenseBanner";
-import NewsletterForm from "@/components/shared/NewsletterForm";
 
 const POPULAR_TOOLS = [
   {
@@ -308,24 +307,6 @@ export default function Home() {
           Perguntas Frequentes
         </h2>
         <FAQAccordion items={faqItems} id="homepage-faq" />
-      </section>
-
-      {/* NEWSLETTER CRO SECTION */}
-      <section className="bg-gradient-to-br from-primary to-blue-900 text-white py-12 px-6 rounded-2xl max-w-7xl mx-auto w-full my-12 shadow-xl text-center md:text-left">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-7 space-y-4">
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
-              Receba atualizações da Tabela de Frete ANTT
-            </h2>
-            <p className="text-sm text-blue-100 max-w-xl leading-normal">
-              Inscreva-se gratuitamente em nossa newsletter. Avisamos você por e-mail sempre que a ANTT publicar novos
-              pisos mínimos de frete ou se o diesel apresentar reajustes expressivos.
-            </p>
-          </div>
-          <div className="md:col-span-5">
-            <NewsletterForm source="pagina-inicial" />
-          </div>
-        </div>
       </section>
     </div>
   );
