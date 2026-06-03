@@ -30,6 +30,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/ferramentas/calculadora-margem-lucro",
     "/ferramentas/calculadora-ocupacao-carga",
     "/ferramentas/calculadora-consumo-combustivel",
+    "/ferramentas/calculadora-hora-parada",
+    "/ferramentas/tabela-fipe-caminhoes",
+    "/ferramentas/calculadora-custo-pneu",
   ];
 
   let blogRoutes: string[] = [];
