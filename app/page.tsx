@@ -1,46 +1,7 @@
 import Link from "next/link";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import AdSenseBanner from "@/components/ads/AdSenseBanner";
-
-const POPULAR_TOOLS = [
-  {
-    name: "Calculadora de Frete",
-    desc: "Calcule preços sugeridos de frete a partir de distâncias, custos e margens de lucro desejadas.",
-    path: "/ferramentas/calculadora-frete",
-    icon: "🚚",
-  },
-  {
-    name: "Custo por KM",
-    desc: "Descubra o custo operacional real por quilômetro rodado do seu caminhão ou frota comercial.",
-    path: "/ferramentas/calculadora-custo-operacional",
-    icon: "📊",
-  },
-  {
-    name: "Cálculo de Cubagem",
-    desc: "Determine o volume em metros cúbicos (m³) e o peso cubado para transporte de cargas.",
-    path: "/ferramentas/calculadora-cubagem",
-    icon: "📦",
-  },
-  {
-    name: "Tabela ANTT",
-    desc: "Estime o piso mínimo de frete obrigatório por lei nas resoluções vigentes da ANTT.",
-    path: "/ferramentas/calculadora-antt",
-    icon: "⚖️",
-  },
-];
-
-const ALL_TOOLS = [
-  { name: "Lucro do Frete", path: "/ferramentas/calculadora-lucro-frete", desc: "Margem e lucro real de viagem" },
-  { name: "Cálculo de Diesel", path: "/ferramentas/calculadora-diesel", desc: "Volume e custos de combustível" },
-  { name: "Pedágios Rota", path: "/ferramentas/calculadora-pedagio", desc: "Tarifas estimativas por eixo" },
-  { name: "Peso Cubado", path: "/ferramentas/calculadora-peso-cubado", desc: "Peso real contra peso volumétrico" },
-  { name: "Simulador de Frete", path: "/ferramentas/simulador-frete", desc: "GRIS, Ad Valorem e ICMS" },
-  { name: "Conversor Peso x Volume", path: "/ferramentas/conversor-peso-volume", desc: "Equivalência métrica rápida" },
-  { name: "Planejador de Viagem", path: "/ferramentas/planejador-viagem", desc: "Orçamento de diesel, alimentação e hotel" },
-  { name: "Margem de Lucro", path: "/ferramentas/calculadora-margem-lucro", desc: "Markup e rentabilidade" },
-  { name: "Ocupação de Carga", path: "/ferramentas/calculadora-ocupacao-carga", desc: "Aproveitamento físico de baú" },
-  { name: "Consumo de Combustível", path: "/ferramentas/calculadora-consumo-combustivel", desc: "Cálculo de médias de rodagem (km/l)" },
-];
+import ToolsSearchList from "@/components/shared/ToolsSearchList";
 
 const BLOG_ARTICLES = [
   {
@@ -142,69 +103,18 @@ export default function Home() {
         <AdSenseBanner slot="1000000000" minHeight={90} />
       </div>
 
-      {/* POPULAR TOOLS GRID */}
-      <section className="py-16 px-4 max-w-7xl mx-auto w-full">
-        <header className="mb-12 text-center md:text-left">
-          <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
-            Ferramentas mais Utilizadas
+      {/* TOOLS SEARCH DIRECTORY */}
+      <section className="py-16 px-4 max-w-7xl mx-auto w-full border-b border-slate-200/40">
+        <header className="mb-12 text-center">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight mb-3">
+            Nossas Calculadoras e Simuladores
           </h2>
-          <p className="text-sm md:text-base text-slate-500">
-            Acesso imediato às calculadoras mais populares no dia a dia do transporte de cargas.
+          <p className="text-sm md:text-base text-slate-500 max-w-2xl mx-auto">
+            Utilize nosso buscador inteligente abaixo ou filtre por categorias para encontrar a calculadora ideal para sua operação logística.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {POPULAR_TOOLS.map((tool) => (
-            <Link
-              key={tool.path}
-              href={tool.path}
-              className="group bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm transition-card flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-3xl mb-4 block select-none">{tool.icon}</span>
-                <h3 className="font-bold text-lg text-slate-900 mb-2 group-hover:text-primary transition-colors">
-                  {tool.name}
-                </h3>
-                <p className="text-xs text-slate-500 leading-relaxed mb-4">{tool.desc}</p>
-              </div>
-              <span className="text-xs font-bold text-primary group-hover:underline flex items-center gap-1">
-                Acessar ferramenta <span>→</span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ALL TOOLS LINK DIRECTORY */}
-      <section className="bg-slate-100/60 py-16 px-4 border-y border-slate-200/40">
-        <div className="max-w-7xl mx-auto w-full">
-          <header className="mb-12 text-center md:text-left">
-            <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
-              Todas as Ferramentas Logísticas
-            </h2>
-            <p className="text-sm md:text-base text-slate-500 font-medium">
-              Lista completa de simuladores para planejamento financeiro, cubagem de carga e economia de viagem.
-            </p>
-          </header>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {ALL_TOOLS.map((tool) => (
-              <Link
-                key={tool.path}
-                href={tool.path}
-                className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-primary/20 hover:shadow-md transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="font-bold text-sm text-slate-900 mb-1">{tool.name}</h3>
-                  <p className="text-[11px] text-slate-400 leading-normal">{tool.desc}</p>
-                </div>
-                <span className="text-[10px] text-slate-500 font-bold mt-3 hover:underline">
-                  Abrir calculadora →
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <ToolsSearchList />
       </section>
 
       {/* BLOG GUIDES & ARTICLES */}
