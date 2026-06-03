@@ -16,6 +16,7 @@ const CALCULATORS = [
   { name: "Margem de Lucro", path: "/ferramentas/calculadora-margem-lucro" },
   { name: "Ocupação Carga", path: "/ferramentas/calculadora-ocupacao-carga" },
   { name: "Consumo de Médias", path: "/ferramentas/calculadora-consumo-combustivel" },
+  { name: "Hora Parada", path: "/ferramentas/calculadora-hora-parada" },
 ];
 
 export default function Footer() {
