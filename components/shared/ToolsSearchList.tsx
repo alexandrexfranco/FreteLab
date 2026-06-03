@@ -167,6 +167,15 @@ const TOOLS: ToolItem[] = [
     category: "regula",
     tags: ["fipe", "tabela", "caminhao", "valor", "preço", "usado", "venda", "compra", "fipe caminhao"],
   },
+  {
+    name: "Custo de Pneu (CPK)",
+    desc: "Calcule o custo por quilômetro (CPK) do pneu do seu caminhão. Avalie a rentabilidade de recapagens.",
+    path: "/ferramentas/calculadora-custo-pneu",
+    icon: "⭕",
+    popular: false,
+    category: "financeiro",
+    tags: ["pneu", "recapagem", "cpk", "custo", "quilometragem", "pneus", "manutenção", "diesel"],
+  },
 ];
 
 type CategoryFilter = "all" | "financeiro" | "carga" | "regula";

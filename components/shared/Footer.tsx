@@ -18,6 +18,7 @@ const CALCULATORS = [
   { name: "Consumo de Médias", path: "/ferramentas/calculadora-consumo-combustivel" },
   { name: "Hora Parada", path: "/ferramentas/calculadora-hora-parada" },
   { name: "Tabela FIPE", path: "/ferramentas/tabela-fipe-caminhoes" },
+  { name: "Custo de Pneu", path: "/ferramentas/calculadora-custo-pneu" },
 ];
 
 export default function Footer() {
