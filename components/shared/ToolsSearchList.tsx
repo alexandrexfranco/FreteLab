@@ -158,6 +158,15 @@ const TOOLS: ToolItem[] = [
     category: "carga",
     tags: ["consumo", "combustível", "média", "rodagem", "km/l", "diesel", "gasolina"],
   },
+  {
+    name: "Tabela FIPE",
+    desc: "Consulte o preço médio oficial de caminhões novos e usados por marca e modelo ou pelo código FIPE.",
+    path: "/ferramentas/tabela-fipe-caminhoes",
+    icon: "🚛",
+    popular: false,
+    category: "regula",
+    tags: ["fipe", "tabela", "caminhao", "valor", "preço", "usado", "venda", "compra", "fipe caminhao"],
+  },
 ];
 
 type CategoryFilter = "all" | "financeiro" | "carga" | "regula";

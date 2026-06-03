@@ -17,6 +17,7 @@ const CALCULATORS = [
   { name: "Ocupação Carga", path: "/ferramentas/calculadora-ocupacao-carga" },
   { name: "Consumo de Médias", path: "/ferramentas/calculadora-consumo-combustivel" },
   { name: "Hora Parada", path: "/ferramentas/calculadora-hora-parada" },
+  { name: "Tabela FIPE", path: "/ferramentas/tabela-fipe-caminhoes" },
 ];
 
 export default function Footer() {
