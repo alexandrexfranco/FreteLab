@@ -56,6 +56,33 @@ function ToolbarSection({ children }: { children: React.ReactNode }) {
   return <div className="flex items-center gap-1 flex-wrap">{children}</div>;
 }
 
+const EDITOR_EXTENSIONS = [
+  StarterKit.configure({
+    heading: { levels: [2, 3, 4] },
+    // Disable codeBlock from StarterKit to configure separately
+  }),
+  Table.configure({ resizable: false }),
+  TableRow,
+  TableHeader,
+  TableCell,
+  Link.configure({
+    openOnClick: false,
+    HTMLAttributes: { class: "text-orange-400 underline underline-offset-2" },
+  }),
+  ImageExt.configure({
+    HTMLAttributes: {
+      class: "rounded-xl my-6 max-w-full shadow-md border border-slate-700",
+    },
+  }),
+  Placeholder.configure({
+    placeholder:
+      "Cole aqui texto do ChatGPT, Google Docs ou Word — títulos, negrito, listas e tabelas serão preservados automaticamente!",
+  }),
+  Underline,
+  TextAlign.configure({ types: ["heading", "paragraph"] }),
+  TextStyle,
+];
+
 // ─── Main Editor Component ───────────────────────────────────────────────────
 export default function RichTextEditor({ value, onChange }: RichTextEditorProps) {
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -65,32 +92,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
 
   const editor = useEditor({
     immediatelyRender: false,
-    extensions: [
-      StarterKit.configure({
-        heading: { levels: [2, 3, 4] },
-        // Disable codeBlock from StarterKit to configure separately
-      }),
-      Table.configure({ resizable: false }),
-      TableRow,
-      TableHeader,
-      TableCell,
-      Link.configure({
-        openOnClick: false,
-        HTMLAttributes: { class: "text-orange-400 underline underline-offset-2" },
-      }),
-      ImageExt.configure({
-        HTMLAttributes: {
-          class: "rounded-xl my-6 max-w-full shadow-md border border-slate-700",
-        },
-      }),
-      Placeholder.configure({
-        placeholder:
-          "Cole aqui texto do ChatGPT, Google Docs ou Word — títulos, negrito, listas e tabelas serão preservados automaticamente!",
-      }),
-      Underline,
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
-      TextStyle,
-    ],
+    extensions: EDITOR_EXTENSIONS,
     content: value || "",
     onUpdate: ({ editor }) => {
       if (!isExternalUpdate.current) {
@@ -104,6 +106,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
       },
     },
   });
+
 
   // Sync value from parent when editing an existing article (no infinite loop)
   useEffect(() => {

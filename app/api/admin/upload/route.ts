@@ -38,11 +38,12 @@ export async function POST(req: NextRequest) {
     const fileUrl = `/uploads/${filename}`;
     
     return NextResponse.json({ success: true, url: fileUrl });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error uploading file:", error);
     return NextResponse.json(
-      { error: "Erro interno ao fazer upload do arquivo" },
+      { error: `Erro interno ao fazer upload do arquivo: ${error.message || error}` },
       { status: 500 }
     );
   }
 }
+
