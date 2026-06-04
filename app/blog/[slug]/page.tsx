@@ -4,6 +4,7 @@ import Link from "next/link";
 import SEOBreadcrumb from "@/components/shared/SEOBreadcrumb";
 import AdSenseBanner from "@/components/ads/AdSenseBanner";
 import { prisma } from "@/lib/prisma";
+import "@/app/blog.css";
 
 interface PageProps {
   params: Promise<{ slug: string }>;

@@ -10,6 +10,7 @@ import { Underline } from "@tiptap/extension-underline";
 import { TextAlign } from "@tiptap/extension-text-align";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { useEffect, useRef, useState, useCallback } from "react";
+import "@/app/editor.css";
 
 interface RichTextEditorProps {
   value: string;
