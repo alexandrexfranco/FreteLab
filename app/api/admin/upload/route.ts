@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth";
-import { writeFile, mkdir } from "fs/promises";
-import { join } from "path";
 
 export async function POST(req: NextRequest) {
   const session = await getAdminSession();
@@ -20,30 +18,49 @@ export async function POST(req: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Create unique filename
+    // Criar nome de arquivo único
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const fileExtension = file.name.split(".").pop();
     const filename = `upload-${uniqueSuffix}.${fileExtension}`;
     
-    // Target directory: public/uploads
-    const uploadDir = join(process.cwd(), "public", "uploads");
-    
-    // Ensure directory exists
-    await mkdir(uploadDir, { recursive: true });
-    
-    // Save file
-    const filePath = join(uploadDir, filename);
-    await writeFile(filePath, buffer);
+    // Configurações do Supabase
+    const supabaseUrl = process.env.SUPABASE_URL || "https://xvlsgnfscebwndtbqcbs.supabase.co";
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-    const fileUrl = `/uploads/${filename}`;
+    if (!supabaseServiceKey) {
+      return NextResponse.json({ 
+        error: "Configuração ausente: SUPABASE_SERVICE_ROLE_KEY não configurada no servidor." 
+      }, { status: 500 });
+    }
+
+    const bucketName = "uploads";
+    const uploadUrl = `${supabaseUrl}/storage/v1/object/${bucketName}/${filename}`;
+
+    // Enviar o buffer do arquivo diretamente via REST API do Supabase Storage
+    const uploadRes = await fetch(uploadUrl, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${supabaseServiceKey}`,
+        "Content-Type": file.type || "application/octet-stream",
+        "x-upsert": "true"
+      },
+      body: buffer
+    });
+
+    if (!uploadRes.ok) {
+      const errorText = await uploadRes.text();
+      throw new Error(`Supabase Storage respondeu com erro: ${errorText}`);
+    }
+
+    // URL pública final do arquivo
+    const fileUrl = `${supabaseUrl}/storage/v1/object/public/${bucketName}/${filename}`;
     
     return NextResponse.json({ success: true, url: fileUrl });
   } catch (error: any) {
-    console.error("Error uploading file:", error);
+    console.error("Error uploading file to Supabase:", error);
     return NextResponse.json(
       { error: `Erro interno ao fazer upload do arquivo: ${error.message || error}` },
       { status: 500 }
     );
   }
 }
-
