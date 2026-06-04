@@ -173,7 +173,7 @@ export default function Home() {
                   <Link href={article.path} className="font-semibold text-slate-700 hover:underline">
                     {article.author}
                   </Link>
-                  <span className="text-slate-400 block text-[10px]">{article.date}</span>
+                  <span className="text-slate-500 block text-[10px]">{article.date}</span>
                 </div>
                 <Link href={article.path} className="text-primary font-bold hover:underline">
                   Ler guia completo
@@ -209,7 +209,7 @@ export default function Home() {
               </p>
               <div>
                 <span className="font-bold text-xs text-white block">Marcos Silva</span>
-                <span className="text-[10px] text-slate-500 block">Caminhoneiro Autônomo - Truck 3 Eixos</span>
+                <span className="text-[10px] text-slate-400 block">Caminhoneiro Autônomo - Truck 3 Eixos</span>
               </div>
             </div>
             <div className="bg-slate-800/40 p-6 rounded-xl border border-slate-800 text-left space-y-4">
@@ -219,7 +219,7 @@ export default function Home() {
               </p>
               <div>
                 <span className="font-bold text-xs text-white block">Juliana Nogueira</span>
-                <span className="text-[10px] text-slate-500 block">Gestora de Frota - Expresso Logístico</span>
+                <span className="text-[10px] text-slate-400 block">Gestora de Frota - Expresso Logístico</span>
               </div>
             </div>
             <div className="bg-slate-800/40 p-6 rounded-xl border border-slate-800 text-left space-y-4">
@@ -229,7 +229,7 @@ export default function Home() {
               </p>
               <div>
                 <span className="font-bold text-xs text-white block">Ronaldo Costa</span>
-                <span className="text-[10px] text-slate-500 block">Motorista Carreteiro Autônomo</span>
+                <span className="text-[10px] text-slate-400 block">Motorista Carreteiro Autônomo</span>
               </div>
             </div>
           </div>

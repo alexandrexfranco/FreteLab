@@ -8,8 +8,8 @@
   --primary-hover: #172554;
   --primary-foreground: #ffffff;
   
-  --secondary: #ea580c; /* Orange 600 */
-  --secondary-hover: #c2410c;
+  --secondary: #c2410c; /* Orange 700 (High contrast AA compliant with white) */
+  --secondary-hover: #9a3412; /* Orange 800 */
   --secondary-foreground: #ffffff;
   
   --card: #ffffff;

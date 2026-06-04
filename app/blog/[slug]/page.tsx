@@ -112,7 +112,7 @@ export default async function Page({ params }: PageProps) {
           <article className="lg:col-span-8 bg-white p-6 md:p-12 rounded-2xl border border-slate-200/80 shadow-sm space-y-8">
             <header className="space-y-4 border-b border-slate-100 pb-6">
               {/* Category tag and publish date */}
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
                 <span className="text-primary">{article.category?.name || "Geral"}</span>
                 <span className="text-slate-300">•</span>
                 <span>

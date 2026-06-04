@@ -32,7 +32,7 @@ export default function AdSenseBanner({
       className={`relative w-full overflow-hidden bg-slate-100/50 border border-slate-200/50 flex items-center justify-center my-6 rounded-xl no-print ${className}`}
       style={{ minHeight: `${minHeight}px` }}
     >
-      <span className="absolute top-1 right-2 text-[9px] uppercase tracking-wider text-slate-400 font-bold select-none">
+      <span className="absolute top-1 right-2 text-[9px] uppercase tracking-wider text-slate-500 font-bold select-none">
         Publicidade
       </span>
       {/* Real AdSense tag */}

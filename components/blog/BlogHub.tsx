@@ -136,7 +136,7 @@ export default function BlogHub({ initialArticles }: BlogHubProps) {
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
                   {/* Category and Date Header */}
-                  <div className="flex items-center justify-between text-[10px] font-bold tracking-wider uppercase text-slate-400">
+                  <div className="flex items-center justify-between text-[10px] font-bold tracking-wider uppercase text-slate-500">
                     <span className="text-primary">{art.category?.name || "Geral"}</span>
                     <span>{new Date(art.createdAt).toLocaleDateString("pt-BR", {
                       day: "numeric",
