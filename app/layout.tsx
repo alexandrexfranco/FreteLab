@@ -47,6 +47,15 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Preconnect to external API and AdSense domains */}
+        <link rel="preconnect" href="https://fipe.parallelum.com.br" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fipe.parallelum.com.br" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+      </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans">
         <Header />
         <main className="flex-grow">{children}</main>
