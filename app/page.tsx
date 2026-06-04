@@ -1,7 +1,32 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import AdSenseBanner from "@/components/ads/AdSenseBanner";
-import ToolsSearchList from "@/components/shared/ToolsSearchList";
+
+const ToolsSearchList = dynamic(() => import("@/components/shared/ToolsSearchList"), {
+  ssr: true,
+  loading: () => (
+    <div className="space-y-12 animate-pulse">
+      {/* Search Input Placeholder */}
+      <div className="max-w-2xl mx-auto h-14 bg-slate-200/60 rounded-2xl" />
+      {/* Category Pills Placeholder */}
+      <div className="flex flex-wrap justify-center gap-2">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="w-32 h-9 bg-slate-200/60 rounded-full" />
+        ))}
+      </div>
+      {/* Popular Tools Grid Placeholder */}
+      <div className="space-y-6">
+        <div className="h-4 w-48 bg-slate-200/60 rounded mx-auto md:mx-0" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="h-44 bg-slate-200/60 rounded-2xl" />
+          ))}
+        </div>
+      </div>
+    </div>
+  ),
+});
 
 const BLOG_ARTICLES = [
   {
